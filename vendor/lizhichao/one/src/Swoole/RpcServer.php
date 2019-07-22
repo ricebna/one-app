@@ -76,7 +76,8 @@ class RpcServer
             }
             return self::ret(self::exec($c, $f, $a, $t, $info, $obj, $s, $o), $id);
         } catch (\Exception $e) {
-            return self::error($e->getCode(), $e->getMessage());
+            // 增加错误行返回 modify by cwhao
+            return self::error($e->getCode(), $e->getMessage() . sprintf(" in %s:%s", $e->getFile(), $e->getLine()));
         }
     }
 
@@ -107,6 +108,11 @@ class RpcServer
                     throw new RpcException('method not exists', 404);
                 }
                 $res = $obj->$f(...$a);
+                // 每次都返回$this modify by cwhao
+                if(!empty($obj->respond_this)){
+                    $res = new RpcData($obj, $obj->$f(...$a));
+                }
+                // end
             }
             if (isset($info['cache'])) {
                 Cache::set($k, serialize($res), $info['cache']);
@@ -197,17 +203,29 @@ class RpcServer
         $px    = $px ? $px . '\\' : '';
         $class = new \ReflectionClass($class);
         $funcs = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
-
-        $r = 'namespace ' . $px . $class->getNamespaceName() . "{\n";
+        // 增加类注释 modify by cwhao
+        $doc = preg_replace(['/^\/\*\*/', '/\n.*?\*\//'], [""], $class->getDocComment());
+        $r = PHP_EOL ."/*". str_repeat('*', 97) . "*/". PHP_EOL .PHP_EOL;
+        $r .= 'namespace ' . $px . $class->getNamespaceName() . "{\n";
         $r .= self::tab(3) . "/**\n";
+        $r .= $doc . PHP_EOL;
+        // end
         foreach ($funcs as $func) {
 
             if (strpos($func->name, '__') === 0 && $func->name !== '__construct') {
                 continue;
             }
-
-            $return = $func->getReturnType() ? $func->getReturnType() : 'mixed';
-            $r      .= self::tab(4) . "* @method {$return} {$func->name}(";
+            // 增加方法注释 modify by cwhao
+            $doc = preg_replace(['/^\/\*\*/', '/\n.*?\*\//'], [""], $func->getDocComment());
+            preg_match('/@return ([a-zA-Z]+).*? */', $doc, $return_match);
+            if(isset($return_match[1])){
+                $return = $return_match[1];
+            }
+            else{
+                $return = $func->getReturnType() ? $func->getReturnType() : 'mixed';
+            }
+            $r      .=  str_repeat('-', 63).$doc.PHP_EOL . self::tab(4) . "* @method {$return} {$func->name}(";
+            // end
             $params = [];
             foreach ($func->getParameters() as $param) {
                 if ($param->getType()) {

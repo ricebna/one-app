@@ -7,8 +7,11 @@ services:
       - "19101:19101"
       - "19102:19102"
       - "19103:19103"
+    networks:
+      - docker-net
     volumes:
       - ./:/var/www/one-app
-#    links:
-#      - redis-db:redis-db
 #    restart: always
+networks:
+  docker-net:
+    external: true
