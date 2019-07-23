@@ -16,8 +16,15 @@ class IndexController extends Controller
         return 'hello world';
     }
 
+    public function checkService(){
+        if(!$this->args["consul_service_id"] || $this->server->consul_service_id != $this->args["consul_service_id"]){
+            return $this->error("no service ". $this->request->get("consul_service_id"));
+        }
+        return "OK";
+    }
+
     public function rpc()
-    {
+    {var_dump($this->server->consul_service_id);return $this->server->consul_service_id;
         //重要通知
         //dispatch_mode = 2
 

@@ -6,13 +6,12 @@
  * Time: 10:40
  */
 
-namespace App\Tests\Rpc;
+namespace App\Rpc;
 
 
 use App\Model\Goods;
 use App\Model\User2;
 use App\Model\User;
-use One\Database\Mysql\Model;
 use One\Swoole\RpcData;
 
 /**

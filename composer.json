@@ -15,9 +15,18 @@
       "email": "1018595261@qq.com"
     }
   ],
+  "scripts": {
+    "post-install-cmd": [
+      "find vendor -type d -name .git -exec rm -rf '{}' \\;"
+    ],
+    "post-update-cmd": [
+      "find vendor -type d -name .git -exec rm -rf '{}' \\;"
+    ]
+  },
   "require": {
-    "php": ">=7.0.0",
-    "lizhichao/one": "dev-master"
+    "php": ">=7.1.0",
+    "lizhichao/one": ">=1.0",
+    "vlucas/phpdotenv": "^3.4"
   },
   "autoload": {
     "psr-4": {

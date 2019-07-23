@@ -4,9 +4,9 @@ return [
     'debug_log' => true, // 是否打印sql日志
     'default'      => [
         'max_connect_count' => 10,
-        'dns'               => env('mysql.test.dns', 'mysql:host=127.0.0.1;dbname=test'),
-        'username'          => env('mysql.test.username', 'root'),
-        'password'          => env('mysql.test.password', ''),
+        'dns'               => "mysql:host=".getenv('mysql.host').";dbname=test",
+        'username'          => getenv('mysql.user'),
+        'password'          => getenv('mysql.pass'),
         'ops'               => [
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4',
             PDO::ATTR_EMULATE_PREPARES   => false,
@@ -15,9 +15,9 @@ return [
     ],
     'test2'      => [
         'max_connect_count' => 10,
-        'dns'               => env('mysql.test2.dns'),
-        'username'          => env('mysql.test2.username'),
-        'password'          => env('mysql.test2.password'),
+        'dns'               => "mysql:host=".getenv('mysql.host').";dbname=test2",
+        'username'          => getenv('mysql.user'),
+        'password'          => getenv('mysql.pass'),
         'ops'               => [
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4',
             PDO::ATTR_EMULATE_PREPARES   => false,
@@ -26,9 +26,9 @@ return [
     ],
     'd_insurance'      => [
         'max_connect_count' => 10,
-        'dns'               => "mysql:host=".env('mysql.host').";dbname=d_insurance",
-        'username'          => env('mysql.user'),
-        'password'          => env('mysql.pass'),
+        'dns'               => "mysql:host=".getenv('mysql.host').";dbname=d_insurance",
+        'username'          => getenv('mysql.user'),
+        'password'          => getenv('mysql.pass'),
         'ops'               => [
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4',
             PDO::ATTR_EMULATE_PREPARES   => false,

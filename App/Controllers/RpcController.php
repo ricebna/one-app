@@ -13,7 +13,18 @@ class RpcController extends Controller
 
     public function index()
     {
-        return $this->json([$this->request->get("class"), $this->request->get("method"), $this->request->get("args")]);
+        $class = $this->request->get("class");
+        $method = $this->request->get("method");
+        $args = $this->request->get("args");
+        $rpc = new $class;
+        $this->response->header('Content-type', 'application/json');
+        try{
+            $result = call_user_func([$rpc, $method], $args);
+            return json_encode(["errmsg" => "ok", "errcode" => "suc", "data" => $result]);
+        }
+        catch (\Throwable $exception){
+            return json_encode(["errmsg" => $exception->getMessage(), "errcode" => "error", "data" => (object)[]]);
+        }
     }
 }
 

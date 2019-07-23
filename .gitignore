@@ -3,4 +3,5 @@
 .DS_Store
 composer.lock
 .app.ini
+.env.local
 /App/RunCache
