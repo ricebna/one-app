@@ -2,15 +2,15 @@ version: '2.0'
 services:
   php-fpm:
     container_name: super-admin-app
-    build: ./
+    build:
+      context: .
+      args:
+        timezone: $timezone
     ports:
       - "19101:19101"
       - "19102:19102"
       - "19103:19103"
     volumes:
       - ./:/var/www/one-app
-#    restart: always
-networks:
-  default:
-    external:
-      name: consul-net
+    extra_hosts:
+     - "consul.client:$consul_host"

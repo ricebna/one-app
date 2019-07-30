@@ -1,7 +1,7 @@
 {
   "name": "lizhichao/one-app",
   "type": "library",
-  "description": "一个极简的php框架，可运行在fpm或者swoole协程模式下",
+  "description": "One Framework",
   "keywords": [
     "swoole",
     "framework",
@@ -15,7 +15,7 @@
       "email": "1018595261@qq.com"
     }
   ],
-  "scripts": {
+  "scripts-": {
     "post-install-cmd": [
       "find vendor -type d -name .git -exec rm -rf '{}' \\;"
     ],
@@ -25,9 +25,22 @@
   },
   "require": {
     "php": ">=7.1.0",
-    "lizhichao/one": ">=1.0",
-    "vlucas/phpdotenv": "^3.4"
+    "lizhichao/one": "dev-master",
+    "vlucas/phpdotenv": "^3.4",
+    "sensiolabs/consul-php-sdk": "^3.1",
+    "shenzhe/waitgroup": "^1.0",
+    "ricebna/one-rpc-client": "dev-master"
   },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/ricebna/waitgroup.git"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/ricebna/one-rpc-client.git"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "App\\": "App/"

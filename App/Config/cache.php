@@ -10,8 +10,8 @@ return [
     'redis' => [ // redis配置
         'default' => [  // 默认配置方法
             'max_connect_count' => 10, // 连接池最大数量
-            'host' => getenv('redis.host', '127.0.0.1'),
-            'port' => getenv('redis.port', 6379),//
+            'host' => getenv('redis_host', '127.0.0.1'),
+            'port' => getenv('redis_port', 6379),//
             'prefix' => 'one_',
 //            'auth' => '123456'
         ],
@@ -25,7 +25,7 @@ return [
                 false,
                 'password'
             ],
-            'is_cluster' => true,
+            'is_cluster' => false,
             'prefix' => 'one_',
 //            'auth' => '123456'
         ]

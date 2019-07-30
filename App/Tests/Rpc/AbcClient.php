@@ -9,6 +9,7 @@
 namespace App\Tests\Rpc;
 
 
+use App\Rpc\HelloRpc;
 use One\Swoole\RpcClientHttp;
 
 /**
@@ -18,8 +19,8 @@ use One\Swoole\RpcClientHttp;
  */
 class AbcClient extends RpcClientHttp
 {
-    protected $_rpc_server = 'http://127.0.0.1:8082';
+    protected $_rpc_server = 'http://127.0.0.1:19102';
 
-    protected $_remote_class_name = Abc::class;
+    protected $_remote_class_name = HelloRpc::class;
 
 }

@@ -7,17 +7,37 @@ namespace Composer\Autoload;
 class ComposerStaticInit6106ff9e848a1f10dd545652fe2a9415
 {
     public static $files = array (
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'W' => 
+        array (
+            'WG\\' => 3,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
+            'SensioLabs\\Consul\\' => 18,
+        ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
+            'Psr\\Http\\Message\\' => 17,
         ),
         'O' => 
         array (
             'One\\' => 4,
+        ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
         ),
         'D' => 
         array (
@@ -30,13 +50,41 @@ class ComposerStaticInit6106ff9e848a1f10dd545652fe2a9415
     );
 
     public static $prefixDirsPsr4 = array (
+        'WG\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/shenzhe/waitgroup/src',
+        ),
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
+        'SensioLabs\\Consul\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sensiolabs/consul-php-sdk/Consul',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
         'One\\' => 
         array (
             0 => __DIR__ . '/..' . '/lizhichao/one/src',
+        ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GuzzleHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
         'Dotenv\\' => 
         array (
@@ -58,12 +106,23 @@ class ComposerStaticInit6106ff9e848a1f10dd545652fe2a9415
         ),
     );
 
+    public static $classMap = array (
+        'OneRpcClient\\Http\\App\\Rpc\\AbcRpc' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/services/SuperAdminHttp.php',
+        'OneRpcClient\\Http\\App\\Rpc\\HelloRpc' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/services/SuperAdminHttp.php',
+        'OneRpcClient\\RpcClient' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/RpcClient.php',
+        'OneRpcClient\\RpcClientHttp' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/RpcClient.php',
+        'OneRpcClient\\RpcClientTcp' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/RpcClient.php',
+        'OneRpcClient\\Tcp\\App\\Rpc\\AbcRpc' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/services/SuperAdminTcp.php',
+        'OneRpcClient\\Tcp\\App\\Rpc\\HelloRpc' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/services/SuperAdminTcp.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit6106ff9e848a1f10dd545652fe2a9415::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit6106ff9e848a1f10dd545652fe2a9415::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit6106ff9e848a1f10dd545652fe2a9415::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit6106ff9e848a1f10dd545652fe2a9415::$classMap;
 
         }, null, ClassLoader::class);
     }

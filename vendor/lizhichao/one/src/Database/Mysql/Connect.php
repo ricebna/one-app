@@ -82,6 +82,9 @@ class Connect
         self::$connect_count--;
         $this->debugLog($sql, $time, $data, $err);
         if ($this->isBreak($err) && $retry < $this->config['max_connect_count'] + 1) {
+            if (_CLI_ === false) {
+                unset(static::$pools[$this->key]);
+            }
             return $this->execute($sql, $data, ++$retry, $return_pdo);
         }
         throw new DbException(json_encode(['info' => $err, 'sql' => $sql]), 7);
@@ -89,7 +92,7 @@ class Connect
 
     private function debugLog($sql, $time = 0, $build = [], $err = [])
     {
-        if (self::$conf['debug_log']) {
+        if (self::$conf['debug_log']) {var_dump($time,microtime(true));
             $time  = $time ? (microtime(true) - $time) * 1000 : $time;
             $s     = vsprintf(str_replace('?', "'%s'", $sql), $build);
             $id    = md5(str_replace('()', '', str_replace(['?', ','], '', $sql)));
