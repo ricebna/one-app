@@ -19,7 +19,7 @@ trait StructTrait
                 $fields = [];
                 $pri    = '';
                 foreach ($arr as $v) {
-                    if ($v['Key'] == 'PRI') {
+                    if ($v['Key'] == 'PRI' && !$pri) {
                         $pri = $v['Field'];
                     } else if ($v['Null'] == 'YES') {
                         $fields[$v['Field']] = 0;
@@ -29,7 +29,7 @@ trait StructTrait
                 }
                 $this->push($pdo);
                 return serialize(['field' => $fields, 'pri' => $pri]);
-            }, 60 * 60 * 24));
+            }, 300));
             self::$struct[$dns][$this->from] = $str;
         }
         return self::$struct[$dns][$this->from];
@@ -58,9 +58,15 @@ trait StructTrait
      * 过滤
      * @param $data
      */
-    public function filter($data)
+    public function filter($data, $include_pri = false)
     {
         $field = $this->getStruct()['field'];
+        if ($include_pri) {
+            $p = $this->getPriKey();
+            if ($p) {
+                $field[$p] = 1;
+            }
+        }
         foreach ($data as $k => $v) {
             if (!isset($field[$k])) {
                 unset($data[$k]);

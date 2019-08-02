@@ -63,4 +63,4 @@ RUN apt-get update \
 WORKDIR /var/www/one-app
 EXPOSE 19101 19102 19103
 
-CMD ["php", "/var/www/one-app/App/swoole.php"]
+CMD ["php", "/var/www/one-app/App/swoole.php > /var/www/one-app/App/RunCache/console.log"]

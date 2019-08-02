@@ -40,8 +40,8 @@ class AppHttpServer extends HttpServer
         $this->consul_service_info = [
             $service_ids[0] => ['service_id' => $service_ids[0], 'check' => $check . $service_ids[0], 'ip' => $lan_ip, 'port' => $rpc_http_port, 'tag' => 'rpc_http', ],
             $service_ids[1] => ['service_id' => $service_ids[1], 'check' => $check . $service_ids[1], 'ip' => $lan_ip, 'port' => $rpc_tcp_port, 'tag' => 'rpc_tcp', ],
-            $service_ids[2] => ['service_id' => $service_ids[2], 'check' => $check . $service_ids[2], 'ip' => $lan_ip, 'port' => $rpc_http_port, 'tag' => 'rpc_container_http',],
-            $service_ids[3] => ['service_id' => $service_ids[3], 'check' => $check . $service_ids[3], 'ip' => $lan_ip, 'port' => $rpc_tcp_port, 'tag' => 'rpc_container_tcp',]
+            //$service_ids[2] => ['service_id' => $service_ids[2], 'check' => $check . $service_ids[2], 'ip' => $lan_ip, 'port' => $rpc_http_port, 'tag' => 'rpc_container_http',],
+            //$service_ids[3] => ['service_id' => $service_ids[3], 'check' => $check . $service_ids[3], 'ip' => $lan_ip, 'port' => $rpc_tcp_port, 'tag' => 'rpc_container_tcp',]
         ];
     }
 

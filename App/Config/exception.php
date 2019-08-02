@@ -9,7 +9,24 @@
  */
 
 return [
-    'render' => function(\One\Exceptions\HttpException $exception){
-        return sprintf("%s in %s:%s ", $exception->getMessage(), $exception->getFile(), $exception->getLine());
+    'render' => function(\One\Exceptions\HttpException $e){
+        $code = $e->getCode();
+        if ($code === 0) {
+            $code = 1;
+        }
+        $e->response->code($code);
+
+        $msg = sprintf("%s in %s:%s ", str_replace('/var/www/one-app/vendor/lizhichao/', '', $e->getMessage()), $e->getFile(), $e->getLine());
+
+        if ($e->response->getHttpRequest()->isJson()) {
+            return $e->response->json($msg, $code);
+        } else {
+            $file = _APP_PATH_VIEW_ . '/exceptions/' . $code . '.php';
+            if (file_exists($file)) {
+                return $e->response->tpl('exceptions/' . $code, ['e' => $e]);
+            } else {
+                return $e->response->json($msg, $code);
+            }
+        }
     }
 ];

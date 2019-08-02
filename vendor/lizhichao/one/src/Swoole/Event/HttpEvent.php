@@ -44,9 +44,9 @@ trait HttpEvent
             error_report($e);
             $msg = $e->getMessage();
             if ($e instanceof DbException) {
-                $msg = 'db error!';
+                $msg = 'db error!'. $msg;
             }
-            $data = Handler::render(new HttpException($res, $msg, $e->getCode()));
+            $data = Handler::render(new HttpException($res, $msg, $e->getCode(), E_ERROR, $e->getFile(), $e->getLine(), $e->getPrevious()));
         }
         Log::flushTraceId($go_id);
         $response->exist = $this->server->exist($request->fd);

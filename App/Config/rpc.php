@@ -8,6 +8,4 @@
 
 use \One\Swoole\RpcServer;
 
-RpcServer::add(\App\Rpc\AbcRpc::class);
-RpcServer::add(\App\Rpc\HelloRpc::class);
-RpcServer::add(\App\Tests\Rpc\Abc::class);
+RpcServer::add(\App\Rpc\AdminRpc::class);

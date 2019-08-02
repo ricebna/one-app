@@ -12,3 +12,11 @@ function error_report(\Throwable $e)
         'trace' => $e->getTrace()
     ]);
 }
+
+function ddd(...$arg){
+    var_dump(...$arg);
+}
+
+function throw_ee($e, $title = ''){
+    throw new \ErrorException($title .', '. $e->getMessage(), $e->getCode(), E_ERROR, $e->getFile(), $e->getLine(), $e->getPrevious());
+}

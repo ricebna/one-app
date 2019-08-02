@@ -6,11 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'OneRpcClient\\Http\\App\\Rpc\\AbcRpc' => $vendorDir . '/ricebna/one-rpc-client/src/services/SuperAdminHttp.php',
-    'OneRpcClient\\Http\\App\\Rpc\\HelloRpc' => $vendorDir . '/ricebna/one-rpc-client/src/services/SuperAdminHttp.php',
     'OneRpcClient\\RpcClient' => $vendorDir . '/ricebna/one-rpc-client/src/RpcClient.php',
     'OneRpcClient\\RpcClientHttp' => $vendorDir . '/ricebna/one-rpc-client/src/RpcClient.php',
     'OneRpcClient\\RpcClientTcp' => $vendorDir . '/ricebna/one-rpc-client/src/RpcClient.php',
-    'OneRpcClient\\Tcp\\App\\Rpc\\AbcRpc' => $vendorDir . '/ricebna/one-rpc-client/src/services/SuperAdminTcp.php',
-    'OneRpcClient\\Tcp\\App\\Rpc\\HelloRpc' => $vendorDir . '/ricebna/one-rpc-client/src/services/SuperAdminTcp.php',
+    'OneRpcClient\\Tcp\\App\\Rpc\\AdminRpc' => $vendorDir . '/ricebna/one-rpc-client/src/services/SuperAdminTcp.php',
 );

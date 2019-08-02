@@ -92,7 +92,7 @@ class Connect
 
     private function debugLog($sql, $time = 0, $build = [], $err = [])
     {
-        if (self::$conf['debug_log']) {var_dump($time,microtime(true));
+        if (self::$conf['debug_log']) {
             $time  = $time ? (microtime(true) - $time) * 1000 : $time;
             $s     = vsprintf(str_replace('?', "'%s'", $sql), $build);
             $id    = md5(str_replace('()', '', str_replace(['?', ','], '', $sql)));

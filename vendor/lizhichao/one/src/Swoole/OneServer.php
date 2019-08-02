@@ -100,7 +100,11 @@ class OneServer
             self::$_server = $server;
             self::e('server start');
             self::e('one version : ' . _ONE_V_);
-            @swoole_set_process_name('one_master_' . md5(serialize(self::$conf)));
+            try {
+                @swoole_set_process_name('one_master_' . md5(serialize(self::$conf)));
+            }catch (\Exception $e){
+                \One\Facades\Log::error($e->getMessage());
+            }
             $server->start();
         }
     }

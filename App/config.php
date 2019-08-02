@@ -9,7 +9,7 @@ $dotenv->overload();
 
 \One\Database\Mysql\Connect::setConfig(config('mysql', true));
 
-//\One\Exceptions\Handler::setConfig(config('exception', true));
+\One\Exceptions\Handler::setConfig(config('exception', true));
 
 \One\Log::setConfig(config('log', true));
 

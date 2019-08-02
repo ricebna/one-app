@@ -107,13 +107,10 @@ class ComposerStaticInit6106ff9e848a1f10dd545652fe2a9415
     );
 
     public static $classMap = array (
-        'OneRpcClient\\Http\\App\\Rpc\\AbcRpc' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/services/SuperAdminHttp.php',
-        'OneRpcClient\\Http\\App\\Rpc\\HelloRpc' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/services/SuperAdminHttp.php',
         'OneRpcClient\\RpcClient' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/RpcClient.php',
         'OneRpcClient\\RpcClientHttp' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/RpcClient.php',
         'OneRpcClient\\RpcClientTcp' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/RpcClient.php',
-        'OneRpcClient\\Tcp\\App\\Rpc\\AbcRpc' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/services/SuperAdminTcp.php',
-        'OneRpcClient\\Tcp\\App\\Rpc\\HelloRpc' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/services/SuperAdminTcp.php',
+        'OneRpcClient\\Tcp\\App\\Rpc\\AdminRpc' => __DIR__ . '/..' . '/ricebna/one-rpc-client/src/services/SuperAdminTcp.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

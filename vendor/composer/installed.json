@@ -646,53 +646,18 @@
         ]
     },
     {
-        "name": "ricebna/one-rpc-client",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/ricebna/one-rpc-client.git",
-            "reference": "d8ce23f7d936ca68bca4488b898c09ea6bc9a737"
-        },
-        "require": {
-            "ext-swoole": ">=4.2.9",
-            "php": ">=7.1",
-            "sensiolabs/consul-php-sdk": "*"
-        },
-        "time": "2019-07-30T02:57:23+00:00",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "classmap": [
-                "src"
-            ]
-        },
-        "authors": [
-            {
-                "name": "ricebna",
-                "email": "ricebna@yahoo.com"
-            }
-        ],
-        "description": "One Framework rpc client",
-        "keywords": [
-            "OneFrameword",
-            "rpc",
-            "swoole"
-        ]
-    },
-    {
         "name": "lizhichao/one",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/lizhichao/one.git",
-            "reference": "484fd736fe7a035f6bd9c39de744f7edbf5daa45"
+            "reference": "128f5052deb30f79ed1c61108213d3cac8c2b5fa"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/lizhichao/one/zipball/484fd736fe7a035f6bd9c39de744f7edbf5daa45",
-            "reference": "484fd736fe7a035f6bd9c39de744f7edbf5daa45",
+            "url": "https://api.github.com/repos/lizhichao/one/zipball/128f5052deb30f79ed1c61108213d3cac8c2b5fa",
+            "reference": "128f5052deb30f79ed1c61108213d3cac8c2b5fa",
             "shasum": "",
             "mirrors": [
                 {
@@ -710,7 +675,7 @@
             "ext-redis": "如果缓存驱动为Redis",
             "ext-swoole": "常驻内存运行必须的扩展"
         },
-        "time": "2019-07-30T03:32:15+00:00",
+        "time": "2019-08-01T08:19:00+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -733,6 +698,41 @@
             "async",
             "framework",
             "one",
+            "swoole"
+        ]
+    },
+    {
+        "name": "ricebna/one-rpc-client",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ricebna/one-rpc-client.git",
+            "reference": "15cf7b045bb5b7866bbd218ff770ecc5341ed6a9"
+        },
+        "require": {
+            "ext-swoole": ">=4.2.9",
+            "php": ">=7.1",
+            "sensiolabs/consul-php-sdk": "*"
+        },
+        "time": "2019-08-02T06:36:13+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "src"
+            ]
+        },
+        "authors": [
+            {
+                "name": "ricebna",
+                "email": "ricebna@yahoo.com"
+            }
+        ],
+        "description": "One Framework rpc client",
+        "keywords": [
+            "OneFrameword",
+            "rpc",
             "swoole"
         ]
     }

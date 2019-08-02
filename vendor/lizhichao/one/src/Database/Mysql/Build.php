@@ -108,7 +108,7 @@ class Build
         if ($info) {
             $ret = $this->fillSelectWith($ret, 'setRelationList');
         }
-        unset($this->model);
+        /*unset($this->model);*/$this->cleanSql();
         return $ret;
     }
 
@@ -136,7 +136,7 @@ class Build
         } else {
             $info = $this->fillSelectWith($info, 'setRelationModel');
         }
-        unset($this->model);
+        /*unset($this->model);*/$this->cleanSql();
         return $info;
     }
 
@@ -150,7 +150,7 @@ class Build
         if ($info) {
             $ret = $this->fillSelectWith($ret, 'setRelationList');
         }
-        unset($this->model);
+        /*unset($this->model);*/$this->cleanSql();
         return $ret;
     }
 
@@ -164,7 +164,7 @@ class Build
         $this->is_count = 1;
         $res            = $this->getData();
         $this->is_count = 0;
-        unset($this->model);
+        /*unset($this->model);*/$this->cleanSql();
         return $res->row_count;
     }
 
@@ -178,14 +178,14 @@ class Build
     {
         $this->sum_column = $column;
         $res              = $this->getData();
-        unset($this->model);
+        /*unset($this->model);*/$this->cleanSql();
         return $res->sum_value;
     }
 
     public function exec($sql, array $build = [], $is_insert = false)
     {
         $r = $this->connect->exec($sql, $build, $is_insert);
-        unset($this->model);
+        /*unset($this->model);*/$this->cleanSql();
         return $r;
     }
 
@@ -196,7 +196,7 @@ class Build
     public function insert($data, $is_mulit = false)
     {
         $r = $this->connect->exec($this->getInsertSql($data, $is_mulit), $this->build, true);
-        unset($this->model);
+        /*unset($this->model);*/$this->cleanSql();
         return $r;
     }
 
@@ -207,7 +207,7 @@ class Build
     public function update($data)
     {
         $r = $this->connect->exec($this->getUpdateSql($data), $this->build);
-        unset($this->model);
+        /*unset($this->model);*/$this->cleanSql();
         return $r;
 
     }
@@ -218,7 +218,7 @@ class Build
     public function delete()
     {
         $r = $this->connect->exec($this->getDeleteSql(), $this->build);
-        unset($this->model);
+        /*unset($this->model);*/$this->cleanSql();
         return $r;
 
     }
@@ -257,7 +257,7 @@ class Build
             $this->connect->rollBack();
         }
         $this->connect->commit();
-        unset($this->model);
+        /*unset($this->model);*/$this->cleanSql();
     }
 
     /**
@@ -531,14 +531,15 @@ class Build
             $keys   = array_keys($data[0]);
             $sql    .= ' (' . implode(',', $keys) . ')';
             $values = [];
+            $x=[];
             foreach ($data as $v) {
-                $v        = $this->filter($v);
+                $v        = $this->filter($v, true);
                 $build    = array_merge($build, array_values($v));
                 $values[] = '(' . substr(str_repeat(',?', count($keys)), 1) . ')';
             }
             $sql .= ' values ' . implode(',', $values);
         } else {
-            $data  = $this->filter($data);
+            $data  = $this->filter($data, true);
             $keys  = array_keys($data);
             $sql   .= ' (' . implode(',', $keys) . ')';
             $build = array_values($data);
@@ -584,6 +585,23 @@ class Build
                 $this->where($pri, $this->model->$pri);
             }
         }
+    }
+
+    public function cleanSql(){
+        $this->columns = [];
+        $this->ignore_column = [];
+        $this->pri_key = '';
+        $this->build = [];
+        $this->withs = [];
+        $this->is_count = 0;
+        $this->sum_column = '';
+        $this->distinct = '';
+        $this->joins = [];
+        $this->group_by = [];
+        $this->order_by = [];
+        $this->limit = 0;
+        $this->having = [];
+        $this->where = [];
     }
 
 

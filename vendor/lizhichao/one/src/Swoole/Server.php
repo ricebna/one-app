@@ -71,7 +71,11 @@ class Server
         $this->is_task   = $server->taskworker ? true : false;
         $this->pid       = $server->worker_pid;
 
-        @swoole_set_process_name(($server->taskworker ? 'one_task' : 'one_worker') . '_' . $worker_id);
+        try {
+            @swoole_set_process_name(($server->taskworker ? 'one_task' : 'one_worker') . '_' . $worker_id);
+        }catch (\Exception $e){
+            \One\Facades\Log::error($e->getMessage());
+        }
         Process::signal(SIGPIPE, function ($signo) {
             echo "socket close\n";
         });
@@ -104,7 +108,11 @@ class Server
 
     public function onManagerStart(\swoole_server $server)
     {
-        @swoole_set_process_name('one_manager');
+        try {
+            @swoole_set_process_name('one_manager');
+        }catch (\Exception $e){
+            \One\Facades\Log::error($e->getMessage());
+        }
     }
 
     public function onManagerStop(\swoole_server $server)

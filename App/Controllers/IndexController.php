@@ -2,19 +2,36 @@
 
 namespace App\Controllers;
 
-use App\Model\User;
-use App\Tests\Rpc\AbcClient;
 use One\Http\Controller;
 use One\Swoole\RpcServer;
-use OneRpcClient\Http\App\Rpc\HelloRpc;
 
 class IndexController extends Controller
 {
 
     public function index()
     {
-        $user = new User();
-        return $this->json($user->limit(5)->findAll()->toArray());
+        $m = new \App\Model\UserModel();
+        $m->flushTableInfo();
+        $m->where(['name' => 'kkk'])->find();
+        $m->where(['name' => 'kkk'])->find();
+        $article_model = new \App\Model\ArticleModel();
+        $article_model->flushTableInfo();
+        $article_model->where(['id', '>', 1])->find();
+        $m->flushTableInfo();//
+        $m->where(['name' => 'kkk'])->find();
+        return 1;
+        //return $this->json($m->getList());
+
+        $d = [
+            'f_username' => 'chen-----------------',
+            'f_roleid' => 'xxxd',
+            'f_siteid' => 'crm2.hinabian.com',
+        ];
+        $m = new \App\Model\Yimin\AdminRelateRoleModel();
+        $m->flushTableInfo();
+        $m->insert([$d], true);
+        //\App\Model\Yimin\AdminRelateRoleModel::insert($d);
+        //\App\Model\UserModel::insert(['name' => 'kkk']);
     }
 
     public function checkService($consul_service_id = ""){
@@ -33,14 +50,14 @@ class IndexController extends Controller
 //        $result = $abc->commit();
 //        return $result;
         $c = new HelloRpc();
-        //$res=$c->insert(2,mt_rand(1000,9999));
-        $res = $c->list();
+        $res=$c->insert(2,mt_rand(1000,9999)."xx-----------------------------kk");
+        //$res = $c->list();
         //$c->commit();
         return $this->json($res);
     }
 
 
-    public function rpcClientHelper($type = 'http')
+    public function rpcClientHelper($type = 'tcp')
     {
         $this->response->header('Content-type', 'text/plain;charset=utf-8');
         $px = "OneRpcClient\\". ucwords($type);
@@ -71,7 +88,7 @@ class IndexController extends Controller
                 else{
                     $return = $func->getReturnType() ? $func->getReturnType() : 'mixed';
                 }
-                $r .=  str_repeat('-', 63).$doc. "\n" . str_repeat(' ', 4) . "* @method {$return} {$func->name}(";
+                $r .=  str_repeat('-', 78). "\n$doc\n\n" . str_repeat(' ', 4) . "* @method {$return} {$func->name}(";
                 $params = [];
                 foreach ($func->getParameters() as $param) {
                     if ($param->getType()) {
@@ -94,7 +111,7 @@ class IndexController extends Controller
                 $r .= str_repeat(' ', 4) . "class {$name} extends \\OneRpcClient\\RpcClientTcp { \n";
             }
             $r .= str_repeat(' ', 8) . "protected \$service_name = '". config('consul.service_name') ."';\n";
-            $r .= str_repeat(' ', 8) . "protected \$_remote_class_name = '{$class->getName()}';\n";
+            $r .= str_repeat(' ', 8) . "protected \$remote_class_name = '{$class->getName()}';\n";
             $r .= str_repeat(' ', 4) . "} \n";
             $r .= "} \n";
         }
