@@ -3,4 +3,5 @@
 .DS_Store
 composer.lock
 .env
-/App/RunCache/*
+/App/RunCache/log/
+/App/RunCache/console.log
